@@ -2,13 +2,14 @@ package main
 
 import (
 	"net/http"
+
 	"github.com/gorilla/mux"
 )
 
 type Route struct {
-	Name string
-	Method string
-	Pattern string
+	Name       string
+	Method     string
+	Pattern    string
 	HandleFunc http.HandlerFunc
 }
 
@@ -26,23 +27,41 @@ func NewRouter() *mux.Router {
 	return router
 }
 
-var routes = Routes {
-	Route {
+var routes = Routes{
+	Route{
 		"Index",
 		"GET",
 		"/",
 		Index,
 	},
-	Route {
+	Route{
 		"MovieList",
 		"GET",
 		"/movies",
 		ListMovies,
 	},
-	Route {
+	Route{
 		"ShowMovie",
 		"GET",
-		"/movies/{id",
+		"/movies/{id}",
 		ShowMovie,
+	},
+	Route{
+		"AddMovie",
+		"POST",
+		"/movies",
+		AddMovie,
+	},
+	Route{
+		"UpdateMovie",
+		"PUT",
+		"/movies/{id}",
+		UpdateMovie,
+	},
+	Route{
+		"RemoveMovie",
+		"DELETE",
+		"/movies/{id}",
+		RemoveMovie,
 	},
 }
